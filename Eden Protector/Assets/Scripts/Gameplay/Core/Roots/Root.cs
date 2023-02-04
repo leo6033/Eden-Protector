@@ -15,6 +15,12 @@ public class Root : MonoBehaviour
     public int rootID;
     public Tower tower;
 
+    private void Awake()
+    {
+        Health health = GetComponent<Health>();
+        health.deadCallback += RootDestroy;
+    }
+
     public void RootDestroy()
     {
         toNode.ownerRoot = null;
@@ -113,6 +119,7 @@ public class Root : MonoBehaviour
         towerGameObj.transform.position = (fromNode.transform.position + toNode.transform.position) / 2;
 
         tower = towerGameObj.GetComponent<Tower>();
+        // tower.transform.right = -Camera.main.transform.forward;
     }
 
     /// <summary>

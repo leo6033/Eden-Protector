@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484ee430fca872d4f93951dddcc207fe, type: 3}
+  m_Name: Tower Idel State
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: b607dd2d0039c9449bd4011302bd2b41, type: 2}
+    trueState: {fileID: 11400000, guid: fbe625682b07c174389b0eaaaa8f5aa7, type: 2}
+    falseState: {fileID: 11400000, guid: e45dfd07e22944b4babd3b257d438915, type: 2}

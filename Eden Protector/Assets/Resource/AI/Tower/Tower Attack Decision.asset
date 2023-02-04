@@ -9,14 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8952c690c9c106c40890550739d870e4, type: 3}
-  m_Name: SunFlower
+  m_Script: {fileID: 11500000, guid: ff7bbc8b678073742adb65a6db4dfed6, type: 3}
+  m_Name: Tower Attack Decision
   m_EditorClassIdentifier: 
-  isRemote: 1
-  attackRange: 2
-  attackRate: 1
-  visionRange: 2
-  physicalAttack: 40
-  physicalDefense: 0
-  moveSpeed: 0
-  HP: 100

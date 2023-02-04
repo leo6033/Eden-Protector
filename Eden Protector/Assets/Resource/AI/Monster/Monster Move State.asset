@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484ee430fca872d4f93951dddcc207fe, type: 3}
+  m_Name: Monster Move State
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: 5f5713d7dfe6f8b44acf6a44a9ee9239, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: 0f8ecafe3ee417f4aa0091036c3fb900, type: 2}
+    trueState: {fileID: 11400000, guid: 894e385d41b66c44fa950cc5ec54d08b, type: 2}
+    falseState: {fileID: 11400000, guid: e45dfd07e22944b4babd3b257d438915, type: 2}

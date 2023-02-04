@@ -97,11 +97,6 @@ public class Node : MonoBehaviour
         root.fromNode = null;
     }
 
-    public void OnPointerClick(BaseEventData args)
-    {
-        Debug.Log("OnPointerClick");
-    }
-
     /// <summary>
     /// 与断开连接的节点建立连接
     /// </summary>

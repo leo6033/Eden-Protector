@@ -14,3 +14,9 @@ public enum TowerType
     SunFlower,
     
 }
+
+public enum MonsterType
+{
+    Ant,
+    
+}

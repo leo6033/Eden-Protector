@@ -15,6 +15,12 @@ public class Root : MonoBehaviour
     public int rootID;
     public Tower tower;
 
+    private void Awake()
+    {
+        Health health = GetComponent<Health>();
+        health.deadCallback += RootDestroy;
+    }
+
     public void RootDestroy()
     {
         toNode.ownerRoot = null;
@@ -31,9 +37,10 @@ public class Root : MonoBehaviour
             needChangeRoot.ChangeConnectDirection();
             
             tmpNode = needChangeRoot.fromNode;
+            tmpNode.ownerRoot = null;
         }
 
-        tmpNode.ownerRoot = null;
+        // tmpNode.ownerRoot = null;
         Tree.Instance.emptyNode.Add(tmpNode);
         Tree.Instance.allRoot.Remove(this);
         Debug.Log($"destroy root, empty node count {Tree.Instance.emptyNode.Count}");
@@ -44,7 +51,7 @@ public class Root : MonoBehaviour
     {
         toNode = node;
         var tmpNode = node;
-        while (tmpNode.ownerRoot != null)
+        while (tmpNode.ownerRoot != null && tmpNode.connectRoots.Count != 0)
         {
             var needChangeRoot = tmpNode.ownerRoot;
             needChangeRoot.ChangeConnectDirection();
@@ -112,6 +119,7 @@ public class Root : MonoBehaviour
         towerGameObj.transform.position = (fromNode.transform.position + toNode.transform.position) / 2;
 
         tower = towerGameObj.GetComponent<Tower>();
+        // tower.transform.right = -Camera.main.transform.forward;
     }
 
     /// <summary>

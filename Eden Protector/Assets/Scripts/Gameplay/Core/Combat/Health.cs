@@ -11,6 +11,10 @@ public class Health : MonoBehaviour
 
     private bool _dead = false;
 
+    public delegate void DeadCallbackDelegate();
+
+    public DeadCallbackDelegate deadCallback;
+
     private void Update()
     {
         if (!_dead && IsDead)
@@ -24,5 +28,6 @@ public class Health : MonoBehaviour
     {
         _dead = true;
         // play animation
+        deadCallback?.Invoke();
     }
 }

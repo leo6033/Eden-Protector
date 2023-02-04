@@ -12,23 +12,14 @@ public class StateController : MonoBehaviour
 
     public Health health;
 
-    [HideInInspector] public NavMeshAgent navMeshAgent;
     [HideInInspector] public float stateTimeElapsed;
     [HideInInspector] public Vector3 targetPoint;
     [HideInInspector] public int nextPoint;
     [HideInInspector] public Collider attackObject;
 
+    [HideInInspector] public float attackCoolDown;
+    
     protected bool aiActive = true;
-
-    private void Awake()
-    {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-    }
-
-    public void SetupAI()
-    {
-        
-    }
 
     public bool TransitionToState(State nextState)
     {
@@ -55,9 +46,12 @@ public class StateController : MonoBehaviour
 
     void Update()
     {
-        if (!aiActive || health.IsDead)
+        if (!aiActive || (health != null && health.IsDead))
             return;
         currentState.UpdateState(this);
+
+        if (attackCoolDown > 0)
+            attackCoolDown -= Time.deltaTime;
     }
 
     void OnDrawGizmosSelected()

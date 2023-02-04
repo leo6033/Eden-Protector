@@ -18,5 +18,5 @@ public enum TowerType
 public enum MonsterType
 {
     Ant,
-    
+    Locust
 }

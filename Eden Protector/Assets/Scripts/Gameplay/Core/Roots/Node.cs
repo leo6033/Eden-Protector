@@ -26,9 +26,11 @@ public class Node : MonoBehaviour
     public int OutDegree => connectRoots.Count;
 
     public bool isConnectToTree;
+    public GameObject rangeShower;
 
     private void Update()
     {
+
         if (!isRoot && InDegree == 0 && OutDegree == 0)
         {
             Destroy(gameObject);
@@ -141,6 +143,11 @@ public class Node : MonoBehaviour
                 root.tower.aiActive = value;
             }
         }
+    }
+
+    public void Select(bool value)
+    {
+        rangeShower.SetActive(value);
     }
     
 }

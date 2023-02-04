@@ -112,12 +112,15 @@ public class GamePlayManager : MonoBehaviour
     public void SelectNode(Node node)
     {
         _currentSelectNode = node;
+        node.Select(true);
         currentState = InputState.SelectNode;
         Debug.Log("Enter select node mode");
     }
 
     public void Unselect()
     {
+        if(_currentSelectNode != null)
+            _currentSelectNode.Select(false);
         _currentSelectNode = null;
         _currentSelectRoot = null;
         currentState = InputState.None;

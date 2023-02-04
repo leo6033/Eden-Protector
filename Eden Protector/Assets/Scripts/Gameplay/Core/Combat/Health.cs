@@ -6,6 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public float hp;
+    private float maxHp;
 
     public bool IsDead => hp <= 0;
 
@@ -15,11 +16,23 @@ public class Health : MonoBehaviour
 
     public DeadCallbackDelegate deadCallback;
 
+    public HpBar hpBar;
+
+    private void Start()
+    {
+        maxHp = hp;
+    }
+
     private void Update()
     {
         if (!_dead && IsDead)
         {
             Dead();
+        }
+
+        if (hpBar != null)
+        {
+            hpBar.SetValue(hp / maxHp);
         }
     }
 

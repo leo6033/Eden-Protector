@@ -30,6 +30,9 @@ public class MushRoomBullet : MonoBehaviour
             yield return null;
         }
 
+        if (target == null)
+            yield break;
+        
         _time = 0;
         var position = transform.position;
         position.x = target.position.x;
@@ -37,6 +40,8 @@ public class MushRoomBullet : MonoBehaviour
 
         while (_time < downTime)
         {
+            if (target == null)
+                yield break;
             transform.position = Vector3.Lerp(position, target.position, _time / downTime);
             _time += Time.deltaTime;
             yield return null;

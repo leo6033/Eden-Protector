@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
 
+    private bool isTranslate = false;
+    public Transform cameraTrans;
+    
     // Update is called once per frame
     void Update()
     {
@@ -15,6 +18,23 @@ public class PlayerInput : MonoBehaviour
         else if (Input.GetMouseButtonUp(1))
         {
             RightMouseDown();
+        }
+        
+        if (Input.GetMouseButtonDown(2))
+        {
+            isTranslate = true;
+        }
+        else if (Input.GetMouseButtonUp(2))
+        {
+            isTranslate = false;
+        }
+        if (isTranslate)
+        {
+            var mouse_x = Input.GetAxis("Mouse X");
+            var mouse_y = Input.GetAxis("Mouse Y");
+            Vector3 right = mouse_x * cameraTrans.right;
+            Vector3 up = mouse_y * cameraTrans.up;
+            cameraTrans.Translate(-right - up, Space.World);
         }
     }
 

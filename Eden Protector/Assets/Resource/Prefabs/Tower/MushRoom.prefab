@@ -63,6 +63,7 @@ MonoBehaviour:
   bulletPos: {fileID: 6115556039351891111}
   mushRoomBulletPrefab: {fileID: 7589107275153580014, guid: bd309cb60e7928a44a68a9e081e825e1,
     type: 3}
+  sunFlowerBeanPrefab: {fileID: 0}
 --- !u!114 &8489688876863041712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +183,7 @@ RectTransform:
   m_GameObject: {fileID: 8836624386182649151}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 1}
   m_Children: []
   m_Father: {fileID: 4260264501685632389}
   m_RootOrder: 0

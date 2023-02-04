@@ -12,7 +12,7 @@ public enum InputState
 public enum TowerType
 {
     SunFlower,
-    
+    MushRoom,
 }
 
 public enum MonsterType

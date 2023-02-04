@@ -14,5 +14,7 @@ public class MonsterMoveAction : Action
     {
         var dirction = (Tree.Instance.transform.position - controller.transform.position).normalized;
         controller.transform.position += dirction * controller.attribute.moveSpeed * Time.deltaTime;
+        controller.spriteRenderer.flipX = dirction.x < 0;
+        controller.animator.SetBool("Move", true);
     }
 }

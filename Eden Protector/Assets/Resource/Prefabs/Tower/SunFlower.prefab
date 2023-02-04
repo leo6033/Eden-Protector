@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 2611142992993074887}
   - component: {fileID: 7592190923587402691}
   - component: {fileID: 1268110985831420763}
+  - component: {fileID: 4720117}
   m_Layer: 0
   m_Name: SunFlower
   m_TagString: Untagged
@@ -152,10 +153,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8085162082341224149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6870009004843376238}
+  - {fileID: 4154846335788894226}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -175,12 +177,19 @@ MonoBehaviour:
   remainState: {fileID: 11400000, guid: e45dfd07e22944b4babd3b257d438915, type: 2}
   attribute: {fileID: 11400000, guid: c9553c23f166f8e4c92b2cf60fb2a0ee, type: 2}
   health: {fileID: 0}
+  spriteRenderer: {fileID: 5642845222163671518}
+  animator: {fileID: 4720117}
   stateTimeElapsed: 0
   targetPoint: {x: 0, y: 0, z: 0}
   nextPoint: 0
   attackObject: {fileID: 0}
+  attackCoolDown: 0
   towerType: 0
   standRoot: {fileID: 0}
+  bulletPos: {fileID: 4154846335788894226}
+  mushRoomBulletPrefab: {fileID: 0}
+  sunFlowerBeanPrefab: {fileID: 7939225895901888948, guid: 6189061f13b53954f949df648423674f,
+    type: 3}
 --- !u!114 &1268110985831420763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,3 +202,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79247b2fc59c43c4ebf30263c99c3bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &4720117
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085162082341224149}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0633bdf624426914c816ce6171fafd76, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &9201675131827032860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4154846335788894226}
+  m_Layer: 0
+  m_Name: BeanPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4154846335788894226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9201675131827032860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.525}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2611142992993074887}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

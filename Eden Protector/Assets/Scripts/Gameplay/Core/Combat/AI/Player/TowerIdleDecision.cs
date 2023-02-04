@@ -15,8 +15,12 @@ public class TowerIdleDecision : Decision
         var enemies = Physics.OverlapSphere(controller.transform.position, controller.attribute.visionRange, 1 << 10);
         foreach (var enemy in enemies)
         {
-            controller.attackObject = enemy;
-            return true;
+            Health heal = enemy.GetComponent<Health>();
+            if (!heal.IsDead)
+            {
+                controller.attackObject = enemy;
+                return true;
+            }
         }
 
         return false;

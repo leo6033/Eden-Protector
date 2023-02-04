@@ -12,6 +12,9 @@ public class StateController : MonoBehaviour
 
     public Health health;
 
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
+    
     [HideInInspector] public float stateTimeElapsed;
     [HideInInspector] public Vector3 targetPoint;
     [HideInInspector] public int nextPoint;

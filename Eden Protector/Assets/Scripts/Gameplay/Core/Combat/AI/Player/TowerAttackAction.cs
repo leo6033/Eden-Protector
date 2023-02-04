@@ -12,6 +12,13 @@ public class TowerAttackAction : Action
 
     private void DoAttack(StateController controller)
     {
-        controller.DoAttack();
+        if (controller.attackObject == null)
+            return;
+        
+        if (controller.attackCoolDown <= 0)
+        {
+            controller.DoAttack();
+            controller.attackCoolDown = controller.attribute.attackRate;
+        }
     }
 }

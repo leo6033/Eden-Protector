@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ef0a8c9ed94d41a4cb13da516fe6b970, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99cb0bb4865324145a462b99cad22581, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 5597929313920093625}
   - component: {fileID: 5597929313920093624}
   - component: {fileID: 1058539757}
+  - component: {fileID: 1058539755}
   m_Layer: 10
   m_Name: Ant
   m_TagString: Untagged
@@ -131,10 +132,13 @@ MonoBehaviour:
   remainState: {fileID: 11400000, guid: e45dfd07e22944b4babd3b257d438915, type: 2}
   attribute: {fileID: 11400000, guid: f6bffb095bfabef4b9cba692772aaa27, type: 2}
   health: {fileID: 5597929313920093624}
+  spriteRenderer: {fileID: 5597929313881468392}
+  animator: {fileID: 1058539755}
   stateTimeElapsed: 0
   targetPoint: {x: 0, y: 0, z: 0}
   nextPoint: 0
   attackObject: {fileID: 0}
+  attackCoolDown: 0
   monsterType: 0
 --- !u!114 &5597929313920093624
 MonoBehaviour:
@@ -163,6 +167,25 @@ CapsuleCollider:
   m_Height: 0.7
   m_Direction: 0
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!95 &1058539755
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5597929313920093627}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 269f69f8e9724a448b783b67ba20f724, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5597929314604375357
 GameObject:
   m_ObjectHideFlags: 0

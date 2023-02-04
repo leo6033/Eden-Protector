@@ -23,10 +23,14 @@ public class MonsterBattleAction : Action
             var dir = controller.attackObject.ClosestPoint(controller.transform.position) -
                       controller.transform.position;
             
+            controller.spriteRenderer.flipX = dir.x < 0;
+
             controller.transform.position += dir.normalized * controller.attribute.moveSpeed * Time.deltaTime;
+            controller.animator.SetBool("Move", true);
         }
-        else
+        else if(controller.attackCoolDown <= 0)
         {
+            controller.animator.SetBool("Move", false);
             controller.DoAttack();
             controller.attackCoolDown = controller.attribute.attackRate;
         }

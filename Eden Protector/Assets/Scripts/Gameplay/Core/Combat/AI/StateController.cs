@@ -22,7 +22,7 @@ public class StateController : MonoBehaviour
 
     [HideInInspector] public float attackCoolDown;
     
-    protected bool aiActive = true;
+    public bool aiActive = true;
 
     public bool TransitionToState(State nextState)
     {

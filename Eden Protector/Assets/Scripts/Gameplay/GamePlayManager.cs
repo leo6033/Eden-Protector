@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GamePlayManager : MonoBehaviour
 {
@@ -13,8 +15,20 @@ public class GamePlayManager : MonoBehaviour
 
     public bool updateClick = true;
 
+    public Transform monsterGroup;
+
     private Node _currentSelectNode;
     private Root _currentSelectRoot;
+
+    public static float DurationTime;
+    private Queue<OneWaveMonsters> monsterCreateInfos;
+    public List<OneWaveMonsters> monsters;
+
+    public int resourceNumber = 0;
+
+    public int currentMonsterNum;
+    public Tree tree;
+    private bool win;
     
     // Start is called before the first frame update
     void Start()
@@ -24,6 +38,64 @@ public class GamePlayManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        DurationTime = 0;
+        currentMonsterNum = 0;
+        monsterCreateInfos = new Queue<OneWaveMonsters>(monsters);
+
+        StartCoroutine(OnGamePlay());
+    }
+
+    IEnumerator OnGamePlay()
+    {
+        while (monsterCreateInfos.Count > 0 && !tree.health.IsDead)
+        {
+            if (currentMonsterNum == 0)
+            {
+                DurationTime += Time.deltaTime;
+                if (monsterCreateInfos.Peek().createTime <= DurationTime)
+                {
+                    var monsterCreateInfo = monsterCreateInfos.Dequeue();
+                    StartCoroutine(CreateMonster(monsterCreateInfo));
+                }
+            }
+            else
+            {
+                DurationTime = 0;
+            }
+            
+            yield return null;
+        }
+
+        yield return OnGameEnd();
+    }
+
+    IEnumerator OnGameEnd()
+    {
+        while (currentMonsterNum > 0 && !Tree.Instance.health.IsDead)
+        {
+            yield return null;
+        }
+
+        win = currentMonsterNum == 0;
+        string meassge = win ? "胜利" : "游戏失败";
+        UIManager.Instance.ShowUIMessage(meassge);
+    }
+
+    IEnumerator CreateMonster(OneWaveMonsters monsterCreateInfo)
+    {
+        foreach (var levelMonster in monsterCreateInfo.LevelMonsters)
+        {
+            for (int i = 0; i < levelMonster.number; i++)
+            {
+                Vector3 randomOffset = Random.insideUnitSphere * 2f;
+                var monster = Instantiate(levelMonster.monsterPrefab, monsterGroup);
+                Health health = monster.GetComponent<Health>();
+                health.deadCallback += () => { currentMonsterNum -= 1; };
+                currentMonsterNum += 1;
+                yield return null;
+            }
         }
     }
 
@@ -73,9 +145,9 @@ public class GamePlayManager : MonoBehaviour
         Tree.Instance.RefreshRootNumber();
     }
 
-    public void BuildTower()
+    public void BuildTower(GameObject prefab)
     {
-        _currentSelectRoot.BuildTower(Tree.Instance.sunFlowerPrefab);
+        _currentSelectRoot.BuildTower(prefab);
     }
 
     #endregion

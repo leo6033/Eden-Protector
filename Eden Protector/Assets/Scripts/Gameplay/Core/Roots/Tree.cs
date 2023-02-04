@@ -11,9 +11,11 @@ public class Tree : MonoBehaviour
     public Node node;
     public GameObject rootPrefab;
     public GameObject nodePrefab;
-    public GameObject sunFlowerPrefab; 
+    public GameObject sunFlowerPrefab;
+    public GameObject mushRoomPrefab;
 
     public Transform rootGroup;
+    public Health health;
 
     /// <summary>
     /// 树拥有的根的数量
@@ -23,6 +25,9 @@ public class Tree : MonoBehaviour
     public List<Node> emptyNode = new List<Node>();
     public List<Root> allRoot = new List<Root>();
 
+    public int sunflowerNeedResourceNumber;
+    public int mushroomNeedResourceNumber;
+    
     // Start is called before the first frame update
     void Start()
     {

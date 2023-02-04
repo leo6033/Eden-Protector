@@ -161,9 +161,12 @@ MonoBehaviour:
     type: 3}
   nodePrefab: {fileID: 8969092114371894109, guid: 05fb1dd57889eb74199ce114b06c0833,
     type: 3}
+  sunFlowerPrefab: {fileID: 8085162082341224149, guid: 39bb790877429a543887058b6bbdceaa,
+    type: 3}
   rootGroup: {fileID: 2137150095912415198}
   rootNumber: 1
   emptyNode: []
+  allRoot: []
 --- !u!114 &-4141165632622325168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +187,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5028193982207594024}
     m_Modifications:
+    - target: {fileID: 6969168787543256971, guid: 05fb1dd57889eb74199ce114b06c0833,
+        type: 3}
+      propertyPath: isRoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969168787543256971, guid: 05fb1dd57889eb74199ce114b06c0833,
+        type: 3}
+      propertyPath: isConnectToTree
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8388402731428410109, guid: 05fb1dd57889eb74199ce114b06c0833,
         type: 3}
       propertyPath: m_LocalPosition.x

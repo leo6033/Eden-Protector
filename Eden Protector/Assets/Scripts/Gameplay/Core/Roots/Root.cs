@@ -13,6 +13,7 @@ public class Root : MonoBehaviour
     public Node toNode;
 
     public int rootID;
+    public Tower tower;
 
     public void RootDestroy()
     {
@@ -34,7 +35,8 @@ public class Root : MonoBehaviour
 
         tmpNode.ownerRoot = null;
         Tree.Instance.emptyNode.Add(tmpNode);
-        
+        Tree.Instance.allRoot.Remove(this);
+        Debug.Log($"destroy root, empty node count {Tree.Instance.emptyNode.Count}");
         Destroy(gameObject);
     }
 
@@ -48,6 +50,9 @@ public class Root : MonoBehaviour
             needChangeRoot.ChangeConnectDirection();
             tmpNode = needChangeRoot.toNode;
         }
+
+        Tree.Instance.emptyNode.Remove(tmpNode);
+        Debug.Log($"connect to node, empty node count {Tree.Instance.emptyNode.Count}");
 
         node.ConnectToTree(true);
     }
@@ -63,5 +68,70 @@ public class Root : MonoBehaviour
         fromNode.Connect(this);
         toNode = tmp;
         toNode.ownerRoot = this;
+    }
+
+    /// <summary>
+    /// 刷新根节点编号
+    /// </summary>
+    public void RefreshRootID()
+    {
+        for (int i = 0; i < toNode.OutDegree; i ++)
+        {
+            var root = toNode.connectRoots[i];
+            root.rootID = Tree.Instance.rootNumber;
+            root.RefreshRootID();
+            if(i < toNode.OutDegree - 1)
+                Tree.Instance.AddNewRoot();
+        }
+    }
+    
+    public bool Cross(Vector3 a, Vector3 b)
+    {
+        Vector3 c = fromNode.transform.position;
+        Vector3 d = toNode.transform.position;
+
+        if (Vector3.Distance(a, c) <= 0.0001 || Vector3.Distance(a, d) <= 0.0001 || Vector3.Distance(b, c) <= 0.0001 || Vector3.Distance(b, d) <= 0.0001)
+            return false;
+
+        Vector2 ac = new Vector2(c.x - a.x, c.z - a.z);
+        Vector2 ad = new Vector2(d.x - a.x, d.z - a.z);
+        Vector2 bc = new Vector2(c.x - b.x, c.z - b.z);
+        Vector2 bd = new Vector2(d.x - b.x, d.z - b.z);
+
+        return (Product(ac, ad) * Product(bc, bd) <= 0.0001) && (Product(ac, bc) * Product(ad, bd) <= 0.0001);
+    }
+
+    private float Product(Vector2 a, Vector2 b)
+    {
+        return a.x * b.y - a.y * b.x;
+    }
+
+    public void BuildTower(GameObject towerPrefab)
+    {
+        var towerGameObj = Instantiate(towerPrefab, Tree.Instance.rootGroup);
+        towerGameObj.transform.position = (fromNode.transform.position + toNode.transform.position) / 2;
+
+        tower = towerGameObj.GetComponent<Tower>();
+    }
+
+    /// <summary>
+    /// 根生长
+    /// </summary>
+    public void Grow()
+    {
+        var root1 = fromNode.ownerRoot;
+        var root2 = this;
+        while (root1 != null && root1.rootID == root2.rootID)
+        {
+            if (root1.tower != null)
+            {
+                root2.tower = root1.tower;
+                root1.tower = null;
+                root2.tower.BeginMove(2f, root2.fromNode.transform.position, (root2.fromNode.transform.position + root2.toNode.transform.position) / 2);
+            }
+
+            root2 = root1;
+            root1 = root1.fromNode.ownerRoot;
+        }
     }
 }

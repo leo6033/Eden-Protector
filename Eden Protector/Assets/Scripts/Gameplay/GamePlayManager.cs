@@ -55,17 +55,27 @@ public class GamePlayManager : MonoBehaviour
     {
         position.y = 0.01f;
         Debug.Log($"create root, node position {position}");
-        return _currentSelectNode.CreateRoot(position);
+        var value =  _currentSelectNode.CreateRoot(position);
+        Tree.Instance.RefreshRootNumber();
+        return value;
     }
 
     public void ConnectToNode(Node node)
     {
         _currentSelectNode.ConnectToNode(node);
+        Tree.Instance.RefreshRootNumber();
+        Unselect();
     }
 
     public void DestroyRoot()
     {
         _currentSelectRoot.RootDestroy();
+        Tree.Instance.RefreshRootNumber();
+    }
+
+    public void BuildTower()
+    {
+        _currentSelectRoot.BuildTower(Tree.Instance.sunFlowerPrefab);
     }
 
     #endregion

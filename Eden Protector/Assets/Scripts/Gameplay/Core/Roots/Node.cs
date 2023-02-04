@@ -37,13 +37,21 @@ public class Node : MonoBehaviour
 
     public bool CreateRoot(Vector3 position)
     {
-        if (connectRoots.Count >= 2)
-        {
-            Debug.Log("Create root fail, connect root number is up to 2");
-            return false;
-        }
+        // if (connectRoots.Count >= 2)
+        // {
+        //     Debug.Log("Create root fail, connect root number is up to 2");
+        //     return false;
+        // }
 
         // 检查相交
+        foreach (var root in Tree.Instance.allRoot)
+        {
+            if (root.Cross(position, transform.position))
+            {
+                UIManager.Instance.ShowUIMessage("与其他根相交");
+                return false;
+            }
+        }
         
         var newNodeGameObj = Instantiate(Tree.Instance.nodePrefab, Tree.Instance.rootGroup);
         newNodeGameObj.transform.position = position;
@@ -60,12 +68,19 @@ public class Node : MonoBehaviour
         newRoot.toNode = newNode;
 
         // 超过一个根段连到该节点，则算作新增一条根
-        if (connectRoots.Count > 0)
+        if (connectRoots.Count > 0 || ownerRoot == null)
         {
             Tree.Instance.AddNewRoot();
+            newRoot.rootID = Tree.Instance.rootNumber;
         }
-        newRoot.rootID = Tree.Instance.rootNumber;
+        else
+        {
+            newRoot.rootID = ownerRoot.rootID;
+        }
+        
         Connect(newRoot);
+        newRoot.Grow();
+        Tree.Instance.allRoot.Add(newRoot);
 
         return true;
     }
@@ -116,4 +131,5 @@ public class Node : MonoBehaviour
             root.toNode.ConnectToTree(value);
         }
     }
+    
 }

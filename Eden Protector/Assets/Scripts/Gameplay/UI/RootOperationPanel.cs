@@ -22,6 +22,7 @@ public class RootOperationPanel : MonoBehaviour
 
     public void OnBuildClick()
     {
-        
+        GamePlayManager.Instance.updateClick = false;
+        GamePlayManager.Instance.BuildTower();
     }
 }

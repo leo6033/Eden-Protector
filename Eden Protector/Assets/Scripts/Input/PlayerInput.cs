@@ -35,6 +35,13 @@ public class PlayerInput : MonoBehaviour
                 if (obj.CompareTag("Root"))
                 {
                     var root = obj.GetComponentInParent<Root>();
+
+                    if (!root.toNode.isConnectToTree)
+                    {
+                        UIManager.Instance.ShowUIMessage("选择根未与树连通");
+                        return;
+                    }
+                    
                     GamePlayManager.Instance.SelectRoot(root);
                     Debug.Log("hit root");
                 }
@@ -44,6 +51,11 @@ public class PlayerInput : MonoBehaviour
                     if (!node.isConnectToTree)
                     {
                         UIManager.Instance.ShowUIMessage("节点未连接到树");
+                        return;
+                    }
+                    else if (node.connectRoots.Count == 2) // TODO: 资源判断
+                    {
+                        UIManager.Instance.ShowUIMessage("该节点已有2根连接");
                         return;
                     }
                     GamePlayManager.Instance.SelectNode(node);

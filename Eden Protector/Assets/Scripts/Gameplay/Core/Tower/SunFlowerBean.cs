@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class SunFlowerBean : MonoBehaviour
     private float _time;
     private Color originColor;
     private Color color;
+
+    private Coroutine _coroutine;
     
     public void Shoot()
     {
@@ -24,7 +27,16 @@ public class SunFlowerBean : MonoBehaviour
         color.a = 0;
         spriteRenderer.color = color;
 
-        StartCoroutine(DoShoot());
+        _coroutine =  StartCoroutine(DoShoot());
+    }
+
+    private void Update()
+    {
+        if (target == null)
+        {
+            StopCoroutine(_coroutine);
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator DoShoot()

@@ -15,11 +15,22 @@ public class MushRoomBullet : MonoBehaviour
 
     private float _time;
 
+    private Coroutine _coroutine;
+
     public void Shoot()
     {
-        StartCoroutine(DoShoot());
+        _coroutine = StartCoroutine(DoShoot());
     }
-    
+
+    private void Update()
+    {
+        if (target == null)
+        {
+            StopCoroutine(_coroutine);
+            Destroy(gameObject);
+        }
+    }
+
     IEnumerator DoShoot()
     {
         _time = 0;
@@ -30,9 +41,6 @@ public class MushRoomBullet : MonoBehaviour
             yield return null;
         }
 
-        if (target == null)
-            yield break;
-        
         _time = 0;
         var position = transform.position;
         position.x = target.position.x;
@@ -40,8 +48,6 @@ public class MushRoomBullet : MonoBehaviour
 
         while (_time < downTime)
         {
-            if (target == null)
-                yield break;
             transform.position = Vector3.Lerp(position, target.position, _time / downTime);
             _time += Time.deltaTime;
             yield return null;

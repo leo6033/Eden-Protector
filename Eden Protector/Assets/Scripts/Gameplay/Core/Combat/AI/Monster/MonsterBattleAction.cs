@@ -16,6 +16,10 @@ public class MonsterBattleAction : Action
         if (controller.attackObject == null)
             return;
         
+        Root root = controller.attackObject.GetComponent<Root>();
+        if (root != null && root.tower != null)
+            return;
+        
         var position = controller.attackObject.ClosestPoint(controller.transform.position);
         if (Vector3.Distance(position, controller.transform.position) >
             controller.attribute.attackRange)

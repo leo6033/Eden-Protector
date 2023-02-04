@@ -29,5 +29,7 @@ public class Health : MonoBehaviour
         _dead = true;
         // play animation
         deadCallback?.Invoke();
+        
+        Destroy(gameObject);
     }
 }

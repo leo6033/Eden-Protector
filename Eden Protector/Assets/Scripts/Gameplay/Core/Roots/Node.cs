@@ -43,6 +43,18 @@ public class Node : MonoBehaviour
         //     return false;
         // }
 
+        var distance = Vector3.Distance(transform.position, position);
+        if (distance < 0.75)
+        {
+            UIManager.Instance.ShowUIMessage("距离过短");
+            return false;
+        }
+        else if (distance > 1.25)
+        {
+            UIManager.Instance.ShowUIMessage("距离过长");;
+            return false;
+        }
+
         // 检查相交
         foreach (var root in Tree.Instance.allRoot)
         {
@@ -124,6 +136,10 @@ public class Node : MonoBehaviour
         foreach (var root in connectRoots)
         {
             root.toNode.ConnectToTree(value);
+            if (root.tower != null)
+            {
+                root.tower.aiActive = value;
+            }
         }
     }
     

@@ -16,14 +16,14 @@ public class MonsterBattleDecision : Decision
             return true;
         else
         {
-            if (controller.CompareTag("Root"))
+            if (controller.attackObject.CompareTag("Root"))
             {
-                Root root = controller.GetComponent<Root>();
+                Root root = controller.attackObject.GetComponent<Root>();
                 if (root.tower != null)
                     return true;
             }
             
-            Health health = controller.GetComponent<Health>();
+            Health health = controller.attackObject.GetComponent<Health>();
             if (health.IsDead)
                 return true;
         }

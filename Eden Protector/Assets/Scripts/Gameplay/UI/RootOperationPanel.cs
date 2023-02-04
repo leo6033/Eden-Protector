@@ -10,6 +10,11 @@ public class RootOperationPanel : MonoBehaviour
         if (gameObject.activeInHierarchy && GamePlayManager.Instance.currentState != InputState.SelectRoot)
         {
             gameObject.SetActive(false);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
         }
     }
 
@@ -20,9 +25,28 @@ public class RootOperationPanel : MonoBehaviour
         GamePlayManager.Instance.Unselect();
     }
 
-    public void OnBuildClick()
+    public void OnMushroomBuild()
     {
+        if (GamePlayManager.Instance.resourceNumber < Tree.Instance.mushroomNeedResourceNumber)
+        {
+            UIManager.Instance.ShowUIMessage("建造蘑菇失败，资源不足");
+            return;
+        }
         GamePlayManager.Instance.updateClick = false;
-        GamePlayManager.Instance.BuildTower();
+        GamePlayManager.Instance.BuildTower(Tree.Instance.mushRoomPrefab);
+        GamePlayManager.Instance.Unselect();
+    }
+
+
+    public void OnSunflowerBuild()
+    {
+        if (GamePlayManager.Instance.resourceNumber < Tree.Instance.sunflowerNeedResourceNumber)
+        {
+            UIManager.Instance.ShowUIMessage("建造向日葵失败，资源不足");
+            return;
+        }
+        GamePlayManager.Instance.updateClick = false;
+        GamePlayManager.Instance.BuildTower(Tree.Instance.sunFlowerPrefab);
+        GamePlayManager.Instance.Unselect();
     }
 }

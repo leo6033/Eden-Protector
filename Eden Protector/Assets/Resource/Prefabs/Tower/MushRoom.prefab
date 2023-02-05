@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: {fileID: 11400000, guid: b19e6e337bb2a2a4989bb1a03bfbef13, type: 2}
   remainState: {fileID: 11400000, guid: e45dfd07e22944b4babd3b257d438915, type: 2}
-  attribute: {fileID: 11400000, guid: c9553c23f166f8e4c92b2cf60fb2a0ee, type: 2}
+  attribute: {fileID: 11400000, guid: 685c031255a2db043822195819fa0261, type: 2}
   health: {fileID: 0}
   spriteRenderer: {fileID: 3028454014834592309}
   animator: {fileID: 7226117087352661534}

@@ -92,7 +92,7 @@ MonoBehaviour:
   attackCoolDown: 0
   aiActive: 1
   monsterType: 1
-  rewardResourceNumber: 2
+  rewardResourceNumber: 3
 --- !u!114 &1411604399707558687
 MonoBehaviour:
   m_ObjectHideFlags: 0

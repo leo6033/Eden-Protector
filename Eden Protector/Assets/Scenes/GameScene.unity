@@ -1087,7 +1087,7 @@ MonoBehaviour:
         type: 3}
       monsterCreatePosition: {fileID: 1835080278}
       number: 5
-    createTime: 3
+    createTime: 5
   - LevelMonsters:
     - monsterPrefab: {fileID: 5597929313920093627, guid: 1f116a73d48978447946a88d70547049,
         type: 3}
@@ -1097,7 +1097,7 @@ MonoBehaviour:
         type: 3}
       monsterCreatePosition: {fileID: 654214481}
       number: 3
-    createTime: 3
+    createTime: 8
   - LevelMonsters:
     - monsterPrefab: {fileID: 1411604399707558684, guid: 5e99fe1e2e8145f4f86af19b85e0cd1b,
         type: 3}
@@ -1123,7 +1123,7 @@ MonoBehaviour:
         type: 3}
       monsterCreatePosition: {fileID: 1835080278}
       number: 3
-    createTime: 5
+    createTime: 10
   resourceNumber: 10
   removeClip: {fileID: 0}
   currentMonsterNum: 0
@@ -1579,6 +1579,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909768367570771103, guid: 930d6a782669de14a81b1c838bf77fcf,
+        type: 3}
+      propertyPath: resourceNum
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 930d6a782669de14a81b1c838bf77fcf, type: 3}
@@ -3422,6 +3427,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909768367570771103, guid: 930d6a782669de14a81b1c838bf77fcf,
+        type: 3}
+      propertyPath: resourceNum
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 930d6a782669de14a81b1c838bf77fcf, type: 3}

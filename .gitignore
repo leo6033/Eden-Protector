@@ -73,3 +73,5 @@ Temp/
 *.csproj
 
 .vsconfig
+
+Build/

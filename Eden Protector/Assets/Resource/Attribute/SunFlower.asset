@@ -16,7 +16,7 @@ MonoBehaviour:
   attackRange: 2
   attackRate: 1
   visionRange: 2
-  physicalAttack: 25
+  physicalAttack: 15
   physicalDefense: 0
   moveSpeed: 0
   HP: 100

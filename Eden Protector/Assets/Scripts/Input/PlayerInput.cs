@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class PlayerInput : MonoBehaviour
     private bool isTranslate = false;
     public Transform cameraTrans;
     public bool stop = false;
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -53,6 +54,14 @@ public class PlayerInput : MonoBehaviour
             UIManager.Instance.stopPanel.SetActive(stop);
 
         }
+
+        float  mouseCenter = Input.GetAxis("Mouse ScrollWheel");
+        var position = cameraTrans.position;
+        var value = position.y - mouseCenter * 40 * Time.deltaTime;
+        value = Math.Max(7, value);
+        value = Math.Min(value, 10);
+        position.y = value;
+        cameraTrans.position = position;
     }
 
     private void LeftMouseDown()

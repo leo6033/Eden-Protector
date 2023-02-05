@@ -15,6 +15,8 @@ public class Root : MonoBehaviour
     public int rootID;
     public Tower tower;
 
+    public SpriteRenderer disconnect;
+
     private void Awake()
     {
         Health health = GetComponent<Health>();

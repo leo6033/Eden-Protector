@@ -142,6 +142,7 @@ public class Node : MonoBehaviour
             {
                 root.tower.aiActive = value;
             }
+            root.disconnect.enabled = !value;
         }
     }
 

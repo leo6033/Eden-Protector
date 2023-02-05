@@ -16,11 +16,33 @@ public class Root : MonoBehaviour
     public Tower tower;
 
     public SpriteRenderer disconnect;
-
+    public float growTime = 2f;
+    public bool complete = false;
+    public GameObject soil;
+    public AudioSource audioSource;
+    
     private void Awake()
     {
         Health health = GetComponent<Health>();
         health.deadCallback += RootDestroy;
+    }
+
+    public IEnumerator DoCreateRoot(Vector3 targetScale)
+    {
+        float time = 0;
+        audioSource.Play();
+        var startScale = new Vector3(1, 1, 0);
+        while (time < growTime)
+        {
+            transform.localScale = Vector3.Lerp(startScale, targetScale, time / growTime);
+            soil.transform.position = Vector3.Lerp(transform.position, toNode.transform.position, time / growTime);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        complete = true;
+        audioSource.Stop();
+        Destroy(soil);
     }
 
     public void RootDestroy()
@@ -49,7 +71,7 @@ public class Root : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void ConnectToNode(Node node)
+    public IEnumerator ConnectToNode(Node node, Vector3 targetScale)
     {
         toNode = node;
         var tmpNode = node;
@@ -63,7 +85,9 @@ public class Root : MonoBehaviour
         Tree.Instance.emptyNode.Remove(tmpNode);
         Debug.Log($"connect to node, empty node count {Tree.Instance.emptyNode.Count}");
 
+        yield return DoCreateRoot(targetScale);
         node.ConnectToTree(true);
+
     }
     
     /// <summary>
@@ -137,7 +161,7 @@ public class Root : MonoBehaviour
             {
                 root2.tower = root1.tower;
                 root1.tower = null;
-                root2.tower.BeginMove(2f, root2.fromNode.transform.position, (root2.fromNode.transform.position + root2.toNode.transform.position) / 2);
+                root2.tower.BeginMove(growTime, root2.fromNode.transform.position, (root2.fromNode.transform.position + root2.toNode.transform.position) / 2);
             }
 
             root2 = root1;

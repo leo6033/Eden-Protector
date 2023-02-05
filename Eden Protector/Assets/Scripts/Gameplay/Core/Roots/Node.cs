@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -71,7 +72,7 @@ public class Node : MonoBehaviour
         newNodeGameObj.transform.position = position;
         var newNode = newNodeGameObj.GetComponent<Node>();
         var newRootGameObj = Instantiate(Tree.Instance.rootPrefab, Tree.Instance.rootGroup);
-        var newRoot = newRootGameObj.GetComponent<Root>();
+        var newRoot = newRootGameObj.GetComponentInChildren<Root>();
         newNode.ownerRoot = newRoot;
         newNode.isConnectToTree = true;
         
@@ -93,10 +94,18 @@ public class Node : MonoBehaviour
         }
         
         Connect(newRoot);
+        StartCoroutine(DoCreateRoot(newRoot, newRoot.transform.localScale, newNodeGameObj));
         newRoot.Grow();
         Tree.Instance.allRoot.Add(newRoot);
 
         return true;
+    }
+
+    IEnumerator DoCreateRoot(Root newRoot, Vector3 targetScale, GameObject newNode)
+    {
+        newNode.SetActive(false);
+        yield return newRoot.DoCreateRoot(targetScale);
+        newNode.SetActive(true);
     }
 
     public void Connect(Root root)
@@ -120,9 +129,11 @@ public class Node : MonoBehaviour
         var newRootGameObj = Instantiate(Tree.Instance.rootPrefab, Tree.Instance.rootGroup);
         newRootGameObj.transform.position = transform.position;
         newRootGameObj.transform.forward = node.transform.position - transform.position;
-        newRootGameObj.transform.localScale = new Vector3(1, 1, Vector3.Distance(transform.position, node.gameObject.transform.position));
-        var newRoot = newRootGameObj.GetComponentInParent<Root>();
-        newRoot.ConnectToNode(node);
+        // newRootGameObj.transform.localScale
+        var targetScale= new Vector3(1, 1, Vector3.Distance(transform.position, node.gameObject.transform.position));
+        
+        var newRoot = newRootGameObj.GetComponentInChildren<Root>();
+        StartCoroutine(newRoot.ConnectToNode(node, targetScale));
         node.ownerRoot = newRoot;
         
         Connect(newRoot);

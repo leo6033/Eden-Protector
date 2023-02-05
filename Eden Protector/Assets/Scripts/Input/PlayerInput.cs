@@ -73,6 +73,12 @@ public class PlayerInput : MonoBehaviour
                 {
                     var root = obj.GetComponentInParent<Root>();
 
+                    if (!root.complete)
+                    {
+                        UIManager.Instance.ShowUIMessage("当前根正在延伸");
+                        return;
+                    }
+
                     if (!root.toNode.isConnectToTree)
                     {
                         UIManager.Instance.ShowUIMessage("选择根未与树连通");

@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
 
     private bool isTranslate = false;
     public Transform cameraTrans;
+    public bool stop = false;
     
     // Update is called once per frame
     void Update()
@@ -35,6 +36,22 @@ public class PlayerInput : MonoBehaviour
             Vector3 right = mouse_x * cameraTrans.right;
             Vector3 up = mouse_y * cameraTrans.up;
             cameraTrans.Translate(-right - up, Space.World);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            stop = !stop;
+            if (stop)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = GamePlayManager.Instance.currentState == InputState.SelectRoot ? 0 : 1;
+            }
+            
+            UIManager.Instance.stopPanel.SetActive(stop);
+
         }
     }
 

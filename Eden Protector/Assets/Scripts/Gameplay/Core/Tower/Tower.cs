@@ -66,4 +66,9 @@ public class Tower : StateController
 
         aiActive = true;
     }
+
+    public void Remove()
+    {
+        Destroy(gameObject);
+    }
 }

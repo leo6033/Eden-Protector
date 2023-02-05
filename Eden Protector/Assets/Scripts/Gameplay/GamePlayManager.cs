@@ -145,12 +145,25 @@ public class GamePlayManager : MonoBehaviour
 
     public void DestroyRoot()
     {
-        _currentSelectRoot.RootDestroy();
-        Tree.Instance.RefreshRootNumber();
+        if (_currentSelectRoot.tower != null)
+        {
+            _currentSelectRoot.tower.Remove();
+        }
+        else
+        {
+            _currentSelectRoot.RootDestroy();
+            Tree.Instance.RefreshRootNumber();
+        }
+
     }
 
     public void BuildTower(GameObject prefab)
     {
+        if (_currentSelectRoot.tower != null)
+        {
+            UIManager.Instance.ShowUIMessage("当前根已种植植物");
+            return;
+        }
         _currentSelectRoot.BuildTower(prefab);
     }
 

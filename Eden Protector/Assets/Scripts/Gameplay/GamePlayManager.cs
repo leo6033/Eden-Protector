@@ -132,6 +132,7 @@ public class GamePlayManager : MonoBehaviour
     {
         position.y = 0.01f;
         Debug.Log($"create root, node position {position}");
+        resourceNumber -= Tree.Instance.rootCost;
         var value =  _currentSelectNode.CreateRoot(position);
         Tree.Instance.RefreshRootNumber();
         return value;

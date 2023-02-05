@@ -942,6 +942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d19e809c49f09f40bb44d4d240ef678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sunflowerCost: {fileID: 2365219499700224725}
+  mushroomCost: {fileID: 797797908810666216}
 --- !u!1 &5150973187206712416
 GameObject:
   m_ObjectHideFlags: 0

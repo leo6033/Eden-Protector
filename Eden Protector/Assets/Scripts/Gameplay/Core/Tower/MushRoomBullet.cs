@@ -8,10 +8,12 @@ public class MushRoomBullet : MonoBehaviour
     public float flyTime;
     public float flySpeed;
     public float downTime;
+    public float outTime;
     public Transform target;
 
     public Animator animator;
     public float harm;
+    public AudioClip boom;
 
     private float _time;
 
@@ -55,7 +57,28 @@ public class MushRoomBullet : MonoBehaviour
 
         Health health = target.GetComponent<Health>();
         health.hp -= harm;
-        
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.clip = boom;
+        audioSource.Play();
+
+        yield return CoDestroy();
+    }
+
+    IEnumerator CoDestroy()
+    {
+        _time = 0;
+        animator.SetBool("Boom", true);
+        var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        var color = spriteRenderer.color;
+        var beginColor = color;
+        color.a = 0;
+        while (_time < outTime)
+        {
+            _time += Time.deltaTime;
+            spriteRenderer.color = Vector4.Lerp(beginColor, color, _time / outTime);
+            yield return null;
+        }
         Destroy(gameObject);
     }
 }

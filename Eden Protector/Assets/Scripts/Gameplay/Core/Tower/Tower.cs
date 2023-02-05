@@ -11,6 +11,8 @@ public class Tower : StateController
     public GameObject mushRoomBulletPrefab;
     public GameObject sunFlowerBeanPrefab;
 
+    public AudioSource audioSource;
+    
     public override void DoAttack()
     {
         animator.SetTrigger("Attack");
@@ -21,6 +23,7 @@ public class Tower : StateController
             mushRoomBullet.harm = attribute.physicalAttack;
             mushRoomBullet.target = attackObject.transform;
             mushRoomBullet.Shoot();
+            audioSource.Play();
         }
         else if (towerType == TowerType.SunFlower)
         {
@@ -29,6 +32,7 @@ public class Tower : StateController
             sunFlowerBean.harm = attribute.physicalAttack;
             sunFlowerBean.target = attackObject.transform;
             sunFlowerBean.Shoot();
+            audioSource.Play();
         }
     }
 

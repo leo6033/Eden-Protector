@@ -6,6 +6,7 @@ using UnityEngine;
 public class Resource : MonoBehaviour
 {
     public int resourceNum;
+    public AudioClip getResource;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,6 +14,7 @@ public class Resource : MonoBehaviour
         if (other.CompareTag("Root"))
         {
             GamePlayManager.Instance.resourceNumber += resourceNum;
+            AudioManager.Instance.PlayAudio(getResource);
             Destroy(gameObject);
         }
     }

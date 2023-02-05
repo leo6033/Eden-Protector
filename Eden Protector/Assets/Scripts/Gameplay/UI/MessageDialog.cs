@@ -13,6 +13,7 @@ public class MessageDialog : MonoBehaviour
     public float duration = 3f;
 
     public Text text;
+    public AudioSource audioSource;
     
 
     // Update is called once per frame
@@ -32,5 +33,6 @@ public class MessageDialog : MonoBehaviour
         _time = 0f;
         text.text = message;
         gameObject.SetActive(true);
+        audioSource.Play();
     }
 }

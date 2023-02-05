@@ -25,6 +25,7 @@ public class GamePlayManager : MonoBehaviour
     public List<OneWaveMonsters> monsters;
 
     public int resourceNumber = 0;
+    public AudioClip removeClip;
 
     public int currentMonsterNum;
     public Tree tree;
@@ -90,7 +91,7 @@ public class GamePlayManager : MonoBehaviour
             for (int i = 0; i < levelMonster.number; i++)
             {
                 Vector3 randomOffset = Random.insideUnitSphere * 2f;
-                var monster = Instantiate(levelMonster.monsterPrefab, monsterGroup);
+                var monster = Instantiate(levelMonster.monsterPrefab, levelMonster.monsterCreatePosition);
                 monster.transform.position += randomOffset;
                 Health health = monster.GetComponent<Health>();
                 health.deadCallback += () => { currentMonsterNum -= 1; };
@@ -148,9 +149,11 @@ public class GamePlayManager : MonoBehaviour
         if (_currentSelectRoot.tower != null)
         {
             _currentSelectRoot.tower.Remove();
+            AudioManager.Instance.PlayAudio(removeClip);
         }
         else
         {
+            AudioManager.Instance.PlayAudio(removeClip);
             _currentSelectRoot.RootDestroy();
             Tree.Instance.RefreshRootNumber();
         }

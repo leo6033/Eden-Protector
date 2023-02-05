@@ -27,6 +27,7 @@ public class Tree : MonoBehaviour
 
     public int sunflowerNeedResourceNumber;
     public int mushroomNeedResourceNumber;
+    public int rootCost;
     
     // Start is called before the first frame update
     void Start()

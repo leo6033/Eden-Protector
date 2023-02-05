@@ -78,6 +78,11 @@ public class PlayerInput : MonoBehaviour
                         UIManager.Instance.ShowUIMessage("该节点已有2根连接");
                         return;
                     }
+                    else if (Tree.Instance.rootCost < GamePlayManager.Instance.resourceNumber)
+                    {
+                        UIManager.Instance.ShowUIMessage("资源不足，无法延伸根");
+                        return;
+                    }
                     GamePlayManager.Instance.SelectNode(node);
                     Debug.Log("hit node");
                 }

@@ -139,6 +139,7 @@ public class GamePlayManager : MonoBehaviour
 
     public void ConnectToNode(Node node)
     {
+        resourceNumber -= Tree.Instance.rootCost;
         _currentSelectNode.ConnectToNode(node);
         Tree.Instance.RefreshRootNumber();
         Unselect();

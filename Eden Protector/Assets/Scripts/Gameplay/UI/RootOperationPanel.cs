@@ -2,9 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RootOperationPanel : MonoBehaviour
 {
+    public Text sunflowerCost;
+    public Text mushroomCost;
+    
     private void Update()
     {
         if (gameObject.activeInHierarchy && GamePlayManager.Instance.currentState != InputState.SelectRoot)
@@ -14,6 +18,8 @@ public class RootOperationPanel : MonoBehaviour
         }
         else
         {
+            sunflowerCost.text = Tree.Instance.sunflowerNeedResourceNumber.ToString();
+            mushroomCost.text = Tree.Instance.mushroomNeedResourceNumber.ToString();
             Time.timeScale = 0;
         }
     }

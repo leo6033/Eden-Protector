@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MushRoom
   m_EditorClassIdentifier: 
   isRemote: 0
-  attackRange: 3
+  attackRange: 8
   attackRate: 2
-  visionRange: 3
-  physicalAttack: 20
+  visionRange: 8
+  physicalAttack: 30
   physicalDefense: 0
   moveSpeed: 0
   HP: 100

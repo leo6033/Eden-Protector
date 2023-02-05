@@ -33,6 +33,7 @@ public class RootOperationPanel : MonoBehaviour
             return;
         }
         GamePlayManager.Instance.updateClick = false;
+        GamePlayManager.Instance.resourceNumber -= Tree.Instance.mushroomNeedResourceNumber;
         GamePlayManager.Instance.BuildTower(Tree.Instance.mushRoomPrefab);
         GamePlayManager.Instance.Unselect();
     }
@@ -46,6 +47,7 @@ public class RootOperationPanel : MonoBehaviour
             return;
         }
         GamePlayManager.Instance.updateClick = false;
+        GamePlayManager.Instance.resourceNumber -= Tree.Instance.sunflowerNeedResourceNumber;
         GamePlayManager.Instance.BuildTower(Tree.Instance.sunFlowerPrefab);
         GamePlayManager.Instance.Unselect();
     }

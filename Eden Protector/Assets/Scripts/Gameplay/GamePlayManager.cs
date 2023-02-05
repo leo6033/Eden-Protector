@@ -91,6 +91,7 @@ public class GamePlayManager : MonoBehaviour
             {
                 Vector3 randomOffset = Random.insideUnitSphere * 2f;
                 var monster = Instantiate(levelMonster.monsterPrefab, monsterGroup);
+                monster.transform.position += randomOffset;
                 Health health = monster.GetComponent<Health>();
                 health.deadCallback += () => { currentMonsterNum -= 1; };
                 currentMonsterNum += 1;

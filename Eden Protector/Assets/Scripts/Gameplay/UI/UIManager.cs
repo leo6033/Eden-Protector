@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     public RootOperationPanel rootOperationPanel;
     public MessageDialog messageDialog;
+    public GameObject stopPanel;
     
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void ShowUIMessage(string message)
+    public void ShowUIMessage(string message)   
     {
         messageDialog.ShowMessage(message);
     }
